@@ -1,4 +1,5 @@
 from adventurelib import *
+import random
 
 # Creating object classes
 
@@ -10,7 +11,7 @@ class Item():
         self.value = value
  
     def __str__(self):
-        return "{}\n=====\n{}\nValue: {}\n".format(self.name, self.description, self.value
+        return "{}\n=====\n{}\nValue: {}\n".format(self.name, self.description, self.value)
 
 # Subclasses of Item
 
@@ -18,8 +19,7 @@ class Gold(Item):
     def __init__(self, amount):
         self.amount = amount
         super().__init__(name="Gold",
-                         description="A round coin with {} stamped on the front.".format(str(self.amt)),
+                         description="A bag of round coins, a quick count shows that you have {} coins".format(str(self.amount)),
                          value=self.amount)
 
-
-start()
+print(Gold(100))
