@@ -1,6 +1,6 @@
 import world
 from player import Player
- 
+
 def play():
     world.load_tiles()
     player = Player()
@@ -21,3 +21,6 @@ def play():
                 if action_input == action.hotkey:
                     player.do_action(action, **action.kwargs)
                     break
+
+if __name__ == "__main__":
+    play()

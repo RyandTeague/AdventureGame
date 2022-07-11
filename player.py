@@ -57,8 +57,8 @@ class Player():
         self.do_action(available_moves[r])
 
     # method to call player actions from commands
-    
+
     def do_action(self, action, **kwargs):
-    action_method = getattr(self, action.method.__name__)
-    if action_method:
-        action_method(**kwargs)
+        action_method = getattr(self, action.method.__name__)
+        if action_method:
+            action_method(**kwargs)

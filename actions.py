@@ -1,4 +1,4 @@
-import Player
+from player import Player
  
 # Creating the class to build orders that the player can give to the game
 class Action():

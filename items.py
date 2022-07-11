@@ -38,8 +38,8 @@ class Rock(Weapon):
         super().__init__(name="Rock",
                          description="A fist-sized rock, suitable for bludgeoning.",
                          value=0,
-                         damage_desc= "1-2 + STR"
-                         damage=2)
+                         damage_desc= "1-2 + STR",
+                         damage= 2)
 
 class Dagger(Weapon):
     def __init__(self):
