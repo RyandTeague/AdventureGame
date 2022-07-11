@@ -1,4 +1,5 @@
-import items
+import items, world
+import random
  
 class Player():
     def __init__(self):
@@ -9,6 +10,8 @@ class Player():
  
     def is_alive(self):
         return self.hp > 0
+
+    #Player actions
  
     def print_inventory(self):
         for item in self.inventory:
@@ -47,6 +50,14 @@ class Player():
         else:
             print("{} HP is {}.".format(enemy.name, enemy.hp))
 
+    def flee(self, tile):
+        """Moves the player randomly to an adjacent tile"""
+        available_moves = tile.adjacent_moves()
+        r = random.randint(0, len(available_moves) - 1)
+        self.do_action(available_moves[r])
+
+    # method to call player actions from commands
+    
     def do_action(self, action, **kwargs):
     action_method = getattr(self, action.method.__name__)
     if action_method:
