@@ -32,3 +32,8 @@ class ViewInventory(Action):
     """Prints the player's inventory"""
     def __init__(self):
         super().__init__(method=Player.print_inventory, name='View inventory', hotkey='i')
+
+class Attack(Action):
+    def __init__(self, enemy):
+        super().__init__(method=Player.attack, name="Attack", hotkey='a', enemy=enemy)
+H
