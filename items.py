@@ -33,6 +33,14 @@ class Weapon(Item):
  
 # Subclasses of Weapon
 
+class Rock(Weapon):
+    def __init__(self):
+        super().__init__(name="Rock",
+                         description="A fist-sized rock, suitable for bludgeoning.",
+                         value=0,
+                         damage_desc= "1-2 + STR"
+                         damage=2)
+
 class Dagger(Weapon):
     def __init__(self):
         super().__init__(name="Dagger",
