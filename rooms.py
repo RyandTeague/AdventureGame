@@ -1,7 +1,7 @@
 import items, enemies
 
 # Superclass for rooms of the game world, x and y coordinates are used to dictate the relative position of rooms
-class Map_pos:
+class Room:
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -12,9 +12,9 @@ class Map_pos:
     def modify_player(self, player):
     raise NotImplementedError()
 
-# Subclasses creating individual rooms
+# Children of Map_pos creating types of rooms
 
-class StartingRoom(MapTile):
+class StartingRoom(Room):
     #starting room where player starts
     def intro_text(self):
         return """
@@ -26,7 +26,7 @@ class StartingRoom(MapTile):
         #Room has no action on player
         pass
 
-class LootRoom(MapTile):
+class LootRoom(Room:
     # Room where player finds an item
     def __init__(self, x, y, item):
         self.item = item
@@ -38,7 +38,7 @@ class LootRoom(MapTile):
     def modify_player(self, player):
         self.add_loot(player)
 
-class EnemyRoom(MapTile):
+class EnemyRoom(Room):
     # Room where player combats enemies
     def __init__(self, x, y, enemy):
         self.enemy = enemy
@@ -48,3 +48,39 @@ class EnemyRoom(MapTile):
         if self.enemy.is_alive():
             the_player.hp = the_player.hp - self.enemy.damage
             print("Enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp)
+
+# Subclasses that are sepecific rooms
+
+class EmptyCavePath(Room):
+    def intro_text(self):
+        return """
+        Another unremarkable part of the cave. You must forge onwards.
+        """
+ 
+    def modify_player(self, player):
+        #Room has no action on player
+        pass
+ 
+class GiantSpiderRoom(EnemyRoom):
+    def __init__(self, x, y):
+        super().__init__(x, y, enemies.GiantSpider())
+ 
+    def intro_text(self):
+        if self.enemy.is_alive():
+            return """
+            A giant spider jumps down from its web in front of you!
+            """
+        else:
+            return """
+            The corpse of a dead spider rots on the ground.
+            """
+ 
+class FindDaggerRoom(LootRoom):
+    def __init__(self, x, y):
+        super().__init__(x, y, items.Dagger())
+ 
+    def intro_text(self):
+        return """
+        Your notice something shiny in the corner.
+        It's a dagger! You pick it up.
+        """
