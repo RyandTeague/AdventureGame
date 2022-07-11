@@ -86,6 +86,19 @@ class EmptyCavePath(Room):
     def modify_player(self, player):
         #Room has no action on player
         pass
+
+class SnakePitRoom(Room):
+    def intro_text(self):
+        return """
+        You enter the room when the ground gives way suddenly!
+
+        You fall into a pit of snakes, you manage to climb out but not without sustaining injuries.
+        """
+ 
+    def modify_player(self, player):
+        snake_damage = 
+        the_player.hp = the_player.hp - snake_damage
+        print(f"You have taken {snake_damage} damage you have {the_player.hp} HP remaining...")
  
 class GiantSpiderRoom(EnemyRoom):
     def __init__(self, x, y):
@@ -111,7 +124,18 @@ class FindDaggerRoom(LootRoom):
         It's a dagger! You pick it up.
         """
 
-class LeaveCaveRoom(MapTile):
+class Find5GoldRoom(LootRoom):
+    def __init__(self, x, y):
+        super().__init__(x, y, items.Gold(5))
+ 
+    def intro_text(self):
+        return """
+        Your notice Shiny Coins scattered around on the Ground.
+
+        You pick up 5 coins!
+        """
+
+class LeaveCaveRoom(Room):
     def intro_text(self):
         return """
         You see a bright light in the distance...
