@@ -1,0 +1,6 @@
+			SnakePitRoom	
+	GiantSpiderRoom		EmptyCavePath	
+	EmptyCavePath		Find5GoldRoom	
+StartingRoom	EmptyCavePath	EmptyCavePath	EmptyCavePath	GiantSpiderRoom
+	EmptyCavePath			LeaveCaveRoom
+	FindDaggerRoom			
