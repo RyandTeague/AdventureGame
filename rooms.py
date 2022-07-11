@@ -69,6 +69,12 @@ class EnemyRoom(Room):
             the_player.hp = the_player.hp - self.enemy.damage
             print("Enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp)
 
+    def available_actions(self):
+        if self.enemy.is_alive():
+            return [actions.Flee(tile=self), actions.Attack(enemy=self.enemy)]
+        else:
+            return self.adjacent_moves()
+
 # Subclasses that are sepecific rooms
 
 class EmptyCavePath(Room):
