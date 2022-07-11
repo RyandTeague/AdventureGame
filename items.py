@@ -39,6 +39,7 @@ class Dagger(Weapon):
                          description="A small dagger with some rust. Somewhat more dangerous than a rock.",
                          value=2,
                          damage_desc= "1-4 + DEX",
-                         damage= random.randint(1,4))
+                         # damage= random.randint(1,4))  **I want weapons to have a damage range but for testing going to use a static number
+                         damage= 4)
 
 print(Dagger().damage)
