@@ -1,4 +1,5 @@
 import items, enemies, actions, world
+from player import Player
 
 # Superclass for rooms of the game world, x and y coordinates are used to dictate the relative position of rooms
 class Room:
@@ -97,8 +98,8 @@ class SnakePitRoom(Room):
  
     def modify_player(self, player):
         snake_damage = 2
-        the_player.hp = the_player.hp - snake_damage
-        print(f"You have taken {snake_damage} damage you have {the_player.hp} HP remaining...")
+        player.hp = player.hp - snake_damage
+        print(f"You have taken {snake_damage} damage you have {player.hp} HP remaining...")
  
 class GiantSpiderRoom(EnemyRoom):
     def __init__(self, x, y):
@@ -126,7 +127,7 @@ class FindDaggerRoom(LootRoom):
 
 class Find5GoldRoom(LootRoom):
     def __init__(self, x, y):
-        super().__init__(x, y, items.Gold(5))
+        super().__init__(x, y, items.Gold(+5))
  
     def intro_text(self):
         return """
