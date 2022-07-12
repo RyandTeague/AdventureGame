@@ -101,6 +101,30 @@ class EmptyCavePath(Room):
         pass
 
 
+class Find5GoldRoom(Room):
+    def __init__(self, x, y):
+        self.gold = 5
+        self.gold_looted = False
+        super().__init__(x, y)
+
+    def intro_text(self):
+        if self.gold_looted:
+            return """
+            The Room is empty, you scan the ground for any signs
+            of more gold but there is none.
+            """
+        else:
+            return """
+            Found Gold!
+            """
+
+    def modify_player(self, player):
+        if not self.gold_looted:
+            self.gold_looted=True
+            player.gold = player.gold + self.gold
+            print("+{} gold added.".format(self.gold))
+
+
 class SnakePitRoom(Room):
     def intro_text(self):
         return """
@@ -116,6 +140,7 @@ class SnakePitRoom(Room):
 
 
 class GiantSpiderRoom(EnemyRoom):
+    """ creates a room with a giant spider enemy """
     def __init__(self, x, y):
         super().__init__(x, y, enemies.GiantSpider())
 
@@ -139,30 +164,6 @@ class FindDaggerRoom(LootRoom):
         Your notice something shiny in the corner.
         It's a dagger! You pick it up.
         """
-
-
-
-class Find5GoldRoom(Room):
-    def intro_text(self):
-        if player.gold_looted:
-            return """
-            The Room is empty, you scan the ground for any signs
-            of more gold but there is none.
-            """
-        else:
-            return """
-            Your notice Shiny Coins scattered around on the Ground.
-
-            You pick up 5 coins!
-            """
-
-        def modify_player(self, player):
-            if player.gold_looted:
-                pass
-            else:
-                gold_looted=True
-                player.inventory.items.Gold = player.inventory.items.Gold + 5
-
     
 
 class LeaveCaveRoom(Room):

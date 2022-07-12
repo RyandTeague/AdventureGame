@@ -7,7 +7,7 @@ class Player():
         self.hp = 100
         self.location_x, self.location_y = world.starting_position
         self.victory = False
-        self.gold_looted = False
+        self.gold = 15
  
     def is_alive(self):
         return self.hp > 0
@@ -15,8 +15,11 @@ class Player():
     #Player actions
  
     def print_inventory(self):
+        print("Inventory:")
         for item in self.inventory:
             print(item, '\n')
+        print("Gold: {}".format(self.gold))
+        
 
     def move(self, dx, dy):
         self.location_x += dx
