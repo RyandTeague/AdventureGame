@@ -22,6 +22,8 @@ def play():
                 if action_input == action.hotkey:
                     player.do_action(action, **action.kwargs)
                     break
+                else:
+                    print("Not an available action, try again")
 
 
 if __name__ == "__main__":
