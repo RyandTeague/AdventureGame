@@ -1,7 +1,7 @@
-from adventurelib import *
-import random
+# import random
 
 # Creating object classes
+
 
 class Item():
     """The base class for all items"""
@@ -15,12 +15,14 @@ class Item():
 
 # Subclasses of Item
 
+
 class Gold(Item):
     def __init__(self, amount):
         self.amount = amount
         super().__init__(name="Gold",
                          description="A bag of round coins, a quick count shows that you have {} coins".format(str(self.amount)),
                          value=self.amount)
+
 
 class Weapon(Item):
     def __init__(self, name, description, value, damage_desc, damage):
@@ -33,21 +35,24 @@ class Weapon(Item):
  
 # Subclasses of Weapon
 
+
 class Rock(Weapon):
     def __init__(self):
         super().__init__(name="Rock",
                          description="A fist-sized rock, suitable for bludgeoning.",
                          value=0,
-                         damage_desc= "1-2 + STR",
-                         damage= 2)
+                         damage_desc="1-2 + STR",
+                         damage=2)
+
 
 class Dagger(Weapon):
     def __init__(self):
         super().__init__(name="Dagger",
                          description="A small dagger with some rust. Somewhat more dangerous than a rock.",
                          value=2,
-                         damage_desc= "1-4 + DEX",
+                         damage_desc="1-4 + DEX",
                          # damage= random.randint(1,4))  **I want weapons to have a damage range but for testing going to use a static number
-                         damage= 4)
+                         damage=4)
+
 
 print(Dagger().damage)

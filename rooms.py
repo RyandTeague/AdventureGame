@@ -1,15 +1,23 @@
-import items, enemies, actions, world
+import items
+import enemies
+import actions
+import world
 from player import Player
 
-# Superclass for rooms of the game world, x and y coordinates are used to dictate the relative position of rooms
+"""
+Superclass for rooms of the game world, x and y coordinates
+are used to dictate the relative position of rooms
+"""
+
+
 class Room:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-    
+
     def intro_text(self):
         raise NotImplementedError()
- 
+
     def modify_player(self, player):
         raise NotImplementedError()
 
@@ -25,50 +33,53 @@ class Room:
         if world.tile_exists(self.x, self.y + 1):
             moves.append(actions.MoveSouth())
         return moves
- 
+
     def available_actions(self):
         """Returns all of the available actions in this room."""
         moves = self.adjacent_moves()
         moves.append(actions.ViewInventory())
- 
+
         return moves
 
 # Children of Map_pos creating types of rooms
 
+
 class StartingRoom(Room):
-    #starting room where player starts
+    # starting room where player starts
     def intro_text(self):
         return """
         You find yourself if a cave with a flickering torch on the wall.
         You can make out four paths, each equally as dark and foreboding.
         """
- 
+
     def modify_player(self, player):
-        #Room has no action on player
+        # Room has no action on player
         pass
+
 
 class LootRoom(Room):
     # Room where player finds an item
     def __init__(self, x, y, item):
         self.item = item
         super().__init__(x, y)
- 
+
     def add_loot(self, player):
         player.inventory.append(self.item)
- 
+
     def modify_player(self, player):
         self.add_loot(player)
+
 
 class EnemyRoom(Room):
     # Room where player combats enemies
     def __init__(self, x, y, enemy):
         self.enemy = enemy
         super().__init__(x, y)
- 
-    def modify_player(self, the_player):
+
+    def modify_player(self, player):
         if self.enemy.is_alive():
-            the_player.hp = the_player.hp - self.enemy.damage
-            print("Enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp))
+            player.hp = player.hp - self.enemy.damage
+            print(f"Enemy does {self.enemy.damage} damage. You have {player.hp} HP remaining.")
 
     def available_actions(self):
         if self.enemy.is_alive():
@@ -78,15 +89,17 @@ class EnemyRoom(Room):
 
 # Subclasses that are sepecific rooms
 
+
 class EmptyCavePath(Room):
     def intro_text(self):
         return """
         Another unremarkable part of the cave. You must forge onwards.
         """
- 
+
     def modify_player(self, player):
-        #Room has no action on player
+        # Room has no action on player
         pass
+
 
 class SnakePitRoom(Room):
     def intro_text(self):
@@ -95,16 +108,17 @@ class SnakePitRoom(Room):
 
         You fall into a pit of snakes, you manage to climb out but not without sustaining injuries.
         """
- 
+
     def modify_player(self, player):
         snake_damage = 2
         player.hp = player.hp - snake_damage
         print(f"You have taken {snake_damage} damage you have {player.hp} HP remaining...")
- 
+
+
 class GiantSpiderRoom(EnemyRoom):
     def __init__(self, x, y):
         super().__init__(x, y, enemies.GiantSpider())
- 
+
     def intro_text(self):
         if self.enemy.is_alive():
             return """
@@ -114,21 +128,23 @@ class GiantSpiderRoom(EnemyRoom):
             return """
             The corpse of a dead spider rots on the ground.
             """
- 
+
+
 class FindDaggerRoom(LootRoom):
     def __init__(self, x, y):
         super().__init__(x, y, items.Dagger())
- 
+
     def intro_text(self):
         return """
         Your notice something shiny in the corner.
         It's a dagger! You pick it up.
         """
 
+
 class Find5GoldRoom(LootRoom):
     def __init__(self, x, y):
         super().__init__(x, y, items.Gold(+5))
- 
+
     def intro_text(self):
         return """
         Your notice Shiny Coins scattered around on the Ground.
@@ -136,14 +152,15 @@ class Find5GoldRoom(LootRoom):
         You pick up 5 coins!
         """
 
+
 class LeaveCaveRoom(Room):
     def intro_text(self):
         return """
         You see a bright light in the distance...
         ... it grows as you get closer! It's sunlight!
-         
+
         Victory is yours!
         """
- 
+
     def modify_player(self, player):
         player.victory = True
