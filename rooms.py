@@ -4,6 +4,9 @@ import actions
 import world
 from player import Player
 
+# Variable for gold room
+gold_looted = False
+
 """
 Superclass for rooms of the game world, x and y coordinates
 are used to dictate the relative position of rooms
@@ -141,17 +144,25 @@ class FindDaggerRoom(LootRoom):
         """
 
 
-class Find5GoldRoom(LootRoom):
-    def __init__(self, x, y):
-        super().__init__(x, y, items.Gold(+5))
 
+class Find5GoldRoom(Room):
     def intro_text(self):
-        return """
-        Your notice Shiny Coins scattered around on the Ground.
+        if gold_looted = false:
+            return """
+            Your notice Shiny Coins scattered around on the Ground.
 
-        You pick up 5 coins!
-        """
+            You pick up 5 coins!
+            """
+        else:
+            return """
+            The Room is empty, you scan the ground for any signs
+            of more gold but there is none.
+            """
 
+        def modify_player(self, player):
+            player.inventory.items.Gold = player.inventory.items.Gold + 5
+
+    
 
 class LeaveCaveRoom(Room):
     def intro_text(self):
