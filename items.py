@@ -15,15 +15,6 @@ class Item():
 
 # Subclasses of Item
 
-
-class Gold(Item):
-    def __init__(self, amount):
-        self.amount = amount
-        super().__init__(name="Gold",
-                         description="A bag of round coins, a quick count shows that you have {} coins".format(str(self.amount)),
-                         value=self.amount)
-
-
 class Weapon(Item):
     def __init__(self, name, description, value, damage_desc, damage):
         self.damage_desc = damage_desc
