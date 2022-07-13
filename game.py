@@ -23,6 +23,10 @@ def play():
                     player.do_action(action, **action.kwargs)
                     print("----------------------------------------------------------------------------")
                     break
+                elif action_input.lower() == action.name.lower():
+                    player.do_action(action, **action.kwargs)
+                    print("----------------------------------------------------------------------------")
+                    break
                 elif action.hotkey == "q" and action_input != action.hotkey:
                     print("\n\t\tSomething went wrong, try again!\n")
                 
