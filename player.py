@@ -60,6 +60,9 @@ class Player():
         r = random.randint(0, len(available_moves) - 1)
         self.do_action(available_moves[r])
 
+    def quit(self):
+        quit()
+
     # method to call player actions from commands
 
     def do_action(self, action, **kwargs):

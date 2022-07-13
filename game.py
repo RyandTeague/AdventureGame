@@ -22,6 +22,8 @@ def play():
                 if action_input == action.hotkey:
                     player.do_action(action, **action.kwargs)
                     break
+                elif action_input == "q":
+                    quit()
                 elif action.hotkey == "i" and action_input != action.hotkey:
                     print("\n\t\tSomething went wrong, try again!\n")
                 
