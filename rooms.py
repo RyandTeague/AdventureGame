@@ -68,7 +68,8 @@ class LootRoom(Room):
         player.inventory.append(self.item)
 
     def modify_player(self, player):
-        self.add_loot(player)
+        if self.item not in player.inventory:
+            self.add_loot(player)
 
 
 class EnemyRoom(Room):
@@ -162,14 +163,22 @@ class GiantSpiderRoom(EnemyRoom):
 
 class FindDaggerRoom(LootRoom):
     def __init__(self, x, y):
+        self.dagger_looted = False
         super().__init__(x, y, items.Dagger())
 
     def intro_text(self):
-        return """
-        Your notice something shiny in the corner.
-        It's a dagger! You pick it up.
-        """
-    
+        if not self.dagger_looted:
+            self.dagger_looted = True
+            return """
+            You notice something shiny in the corner.
+            It's a dagger! You pick it up.
+            """
+        else:
+            return """ 
+            This room is empty.
+            You must keep moving!
+            """
+
 
 class LeaveCaveRoom(Room):
     def intro_text(self):
