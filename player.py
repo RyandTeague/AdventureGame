@@ -61,6 +61,7 @@ class Player():
         self.do_action(available_moves[r])
 
     def quit(self):
+        print("\n\t\tYou have abandoned your journey!\n \n\t\t\t## GAME OVER ##\n")
         quit()
 
     # method to call player actions from commands

@@ -21,14 +21,13 @@ def play():
             for action in available_actions:
                 if action_input == action.hotkey:
                     player.do_action(action, **action.kwargs)
+                    print("----------------------------------------------------------------------------")
                     break
-                elif action_input == "q":
-                    quit()
-                elif action.hotkey == "i" and action_input != action.hotkey:
+                elif action.hotkey == "q" and action_input != action.hotkey:
                     print("\n\t\tSomething went wrong, try again!\n")
                 
         elif not player.is_alive() and not player.victory:
-            print("\n\t\tYOU HAVE DIED\n")
+            print("\n\t\tYOU HAVE DIED\n \n\t\t\t## GAME OVER ##\n")
 
 
 

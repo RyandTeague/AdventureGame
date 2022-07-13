@@ -38,6 +38,7 @@ class Room:
         """Returns all of the available actions in this room."""
         moves = self.adjacent_moves()
         moves.append(actions.ViewInventory())
+        moves.append(actions.QuitGame())
 
         return moves
 
@@ -83,9 +84,13 @@ class EnemyRoom(Room):
 
     def available_actions(self):
         if self.enemy.is_alive():
-            return [actions.Flee(tile=self), actions.Attack(enemy=self.enemy)]
+            moves = [actions.Flee(tile=self), actions.Attack(enemy=self.enemy)]
+            moves.append(actions.QuitGame())
+            return moves
         else:
-            return self.adjacent_moves()
+            moves = self.adjacent_moves()
+            moves.append(actions.QuitGame())
+            return moves
 
 # Subclasses that are sepecific rooms
 
