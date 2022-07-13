@@ -22,8 +22,12 @@ def play():
                 if action_input == action.hotkey:
                     player.do_action(action, **action.kwargs)
                     break
-                else:
-                    print("Not an available action, try again")
+                elif action.hotkey == "i" and action_input != action.hotkey:
+                    print("\n\t\tSomething went wrong, try again!\n")
+                
+        elif not player.is_alive() and not player.victory:
+            print("\n\t\tYOU HAVE DIED\n")
+
 
 
 if __name__ == "__main__":
