@@ -19,7 +19,7 @@ def play():
                 print(action)
             action_input = input('Action: ')
             for action in available_actions:
-                if action_input == action.hotkey:
+                if action_input in action.hotkey:
                     player.do_action(action, **action.kwargs)
                     print("----------------------------------------------------------------------------")
                     break

@@ -9,7 +9,7 @@ class Action():
         self.kwargs = kwargs
  
     def __str__(self):
-        return "{}: {}".format(self.hotkey, self.name)
+        return "{}: {}".format(self.hotkey[0], self.name)
 
 # Creating the specific orders for the player to control the game, including hotkeys
 class MoveNorth(Action):
@@ -22,7 +22,7 @@ class MoveSouth(Action):
  
 class MoveEast(Action):
     def __init__(self):
-        super().__init__(method=Player.move_east, name='Move east', hotkey='e')
+        super().__init__(method=Player.move_east, name='Move east', hotkey=['e', '1'])
  
 class MoveWest(Action):
     def __init__(self):
