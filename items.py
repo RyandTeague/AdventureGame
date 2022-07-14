@@ -1,6 +1,6 @@
-# import random
-
-# Creating object classes
+"""
+Contains all the object classes
+"""
 
 
 class Item():
