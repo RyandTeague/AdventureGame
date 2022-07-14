@@ -16,6 +16,9 @@ class Item():
 # Subclasses of Item
 
 class Weapon(Item):
+    """
+    An Item object that can do damage
+    """
     def __init__(self, name, description, value, damage_desc, damage):
         self.damage_desc = damage_desc
         self.damage = damage
@@ -28,6 +31,10 @@ class Weapon(Item):
 
 
 class Rock(Weapon):
+    """
+    The starting weapon that does the least damage but the
+    player can't attack an enemy without a weapon
+    """
     def __init__(self):
         super().__init__(name="Rock",
                          description="A fist-sized rock, suitable for bludgeoning.",
@@ -37,6 +44,9 @@ class Rock(Weapon):
 
 
 class Dagger(Weapon):
+    """
+    An item to be found that allows the player to do more damage to enemies
+    """
     def __init__(self):
         super().__init__(name="Dagger",
                          description="A small dagger with some rust. Somewhat more dangerous than a rock.",
@@ -44,6 +54,3 @@ class Dagger(Weapon):
                          damage_desc="1-4 + DEX",
                          # damage= random.randint(1,4))  **I want weapons to have a damage range but for testing going to use a static number
                          damage=4)
-
-
-print(Dagger().damage)
