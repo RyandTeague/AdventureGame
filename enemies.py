@@ -1,8 +1,15 @@
+"""
+Contains all the enemy objects that the player
+can lose hp to
+"""
 import random
 
 # Superclass
 
 class Enemy:
+    """
+    Base class that is used to create all other enemies
+    """
     def __init__(self, name, hp, damage):
         self.name = name
         self.hp = hp
@@ -14,6 +21,9 @@ class Enemy:
 # Subclasses
 
 class GiantSpider(Enemy):
+    """
+    creates a spider enemy 
+    """
     def __init__(self):
         super().__init__(name="Giant Spider", hp=10, damage=2)
 

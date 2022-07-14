@@ -1,3 +1,9 @@
+"""
+Generates the game world by parsing a text file
+and assigning them rooms with x y values
+so that theplayer object can move between them
+by changing their own x y values.
+"""
 _world = {}
 starting_position = (0, 0)
 def tile_exists(x, y):

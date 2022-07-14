@@ -223,6 +223,10 @@ class FindDaggerRoom(LootRoom):
 
 
 class LeaveCaveRoom(Room):
+    """
+    creates a room that changes the victory value to true,
+    ending the game
+    """
     def intro_text(self):
         return """
         You see a bright light in the distance...
