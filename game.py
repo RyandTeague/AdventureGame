@@ -2,6 +2,7 @@ import world
 from player import Player
 import gspread
 from google.oauth2.service_account import Credentials
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -41,7 +42,20 @@ def play():
                     print("----------------------------------------------------------------------------")
                     break
                 elif action.hotkey == "q" and action_input != action.hotkey:
-                    print("\n\t\tSomething went wrong, try again!\n")
+                    """
+                    If the player inputs an invalid command then this code will ask them
+                    what they were trying to and log it into a spreadsheet that the developer 
+                    can see. 
+                    """
+                    data = [action_input]
+                    intent = input("\n\t\tSomething went wrong, what were you trying to do?:\n")
+                    data.append(intent)
+                    the_date = datetime.now().date()
+                    the_time = datetime.now().time()
+                    data.append(the_date,the_time)
+                    worksheet_to_update = SHEET.worksheet("feedback")
+                    worksheet_to_update.append_row(data)
+                    print("\n\t\t Thank you! Please try a different command!")
                 
         elif not player.is_alive() and not player.victory:
             print("\n\t\tYOU HAVE DIED\n \n\t\t\t## GAME OVER ##\n")
