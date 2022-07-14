@@ -1,3 +1,6 @@
+"""
+Contains the code used to actually run the game
+"""
 import world
 from player import Player
 import gspread
@@ -25,10 +28,12 @@ def feedback(data):
     feedback.append(intent)
     the_date = datetime.now().strftime("%c")
     feedback.append(the_date)
-    print(feedback)
     SHEET.worksheet("feedback").append_row(feedback)
 
 def play():
+    """
+    Runs the game, loops until the game is lost, quit, or won
+    """
     world.load_tiles()
     player = Player()
     # These lines load the starting room and display the text
