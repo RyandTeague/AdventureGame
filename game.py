@@ -15,6 +15,14 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('AdventureGame_feedback')
 
+def feedback(data):
+    feedback = [data]
+    intent = input("\n\t\tSomething went wrong, what were you trying to do?:\n")
+    feedback.append(intent)
+    the_date = datetime.now().strftime("%c")
+    feedback.append(the_date)
+    print(feedback)
+    SHEET.worksheet("feedback").append_row(feedback)
 
 def play():
     world.load_tiles()
@@ -47,14 +55,8 @@ def play():
                     what they were trying to and log it into a spreadsheet that the developer 
                     can see. 
                     """
-                    data = [action_input]
-                    intent = input("\n\t\tSomething went wrong, what were you trying to do?:\n")
-                    data.append(intent)
-                    the_date = datetime.now().date()
-                    the_time = datetime.now().time()
-                    data.append(the_date,the_time)
-                    worksheet_to_update = SHEET.worksheet("feedback")
-                    worksheet_to_update.append_row(data)
+                    feedback(action_input)
+                    # worksheet_to_update.append_row(data)
                     print("\n\t\t Thank you! Please try a different command!")
                 
         elif not player.is_alive() and not player.victory:
