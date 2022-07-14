@@ -16,6 +16,10 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('AdventureGame_feedback')
 
 def feedback(data):
+    """
+    Takes the player input, asks for an explanation from the player, and then appends the date and time 
+    before sending it to a google sheet
+    """
     feedback = [data]
     intent = input("\n\t\tSomething went wrong, what were you trying to do?:\n")
     feedback.append(intent)
