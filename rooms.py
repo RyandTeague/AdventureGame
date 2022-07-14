@@ -1,24 +1,38 @@
+"""
+Contains all the rooms or 'tiles' that the player can move to trigger
+different events
+"""
+
 import items
 import enemies
 import actions
 import world
 from player import Player
 
-"""
-Superclass for rooms of the game world, x and y coordinates
-are used to dictate the relative position of rooms
-"""
-
 
 class Room:
+    """
+    Superclass for rooms of the game world, x and y coordinates
+    are used to dictate the relative position of rooms
+    """
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
+    
     def intro_text(self):
+        """
+        Throws up errors if a room object has been created 
+        without intro text
+        """
         raise NotImplementedError()
 
     def modify_player(self, player):
+        """
+        Throws up errors if a room object has been created 
+        without something that changes the player in some 
+        way
+        """
         raise NotImplementedError()
 
     def adjacent_moves(self):
@@ -46,20 +60,26 @@ class Room:
 
 
 class StartingRoom(Room):
-    # starting room where player starts
+    """
+    starting room where player starts
+    """
     def intro_text(self):
         return """
         You find yourself if a cave with a flickering torch on the wall.
-        You can make out four paths, each equally as dark and foreboding.
+        You can make out a dimly lit and foreboding path ahead.
         """
 
     def modify_player(self, player):
-        # Room has no action on player
+        """
+        Room has no action on player
+        """
         pass
 
 
 class LootRoom(Room):
-    # Room where player finds an item
+    """
+    Room where player finds an item
+    """
     def __init__(self, x, y, item):
         self.item = item
         super().__init__(x, y)
@@ -73,17 +93,26 @@ class LootRoom(Room):
 
 
 class EnemyRoom(Room):
-    # Room where player combats enemies
+    """
+    Room where player combats enemies
+    """
     def __init__(self, x, y, enemy):
         self.enemy = enemy
         super().__init__(x, y)
 
     def modify_player(self, player):
+        """
+        Reduces the player's hp
+        """
         if self.enemy.is_alive():
             player.hp = player.hp - self.enemy.damage
             print(f"Enemy does {self.enemy.damage} damage. You have {player.hp} HP remaining.")
 
     def available_actions(self):
+        """
+        Checks if enemy is still alive and limits player's actions
+        if they are.
+        """
         if self.enemy.is_alive():
             moves = [actions.Flee(tile=self), actions.Attack(enemy=self.enemy)]
             moves.append(actions.QuitGame())
@@ -108,6 +137,9 @@ class EmptyCavePath(Room):
 
 
 class Find5GoldRoom(Room):
+    """
+    Room where player gains 5 gold
+    """
     def __init__(self, x, y):
         self.gold = 5
         self.gold_looted = False
@@ -125,6 +157,9 @@ class Find5GoldRoom(Room):
             """
 
     def modify_player(self, player):
+        """
+        Adds 5 to the gold value from the player object
+        """
         if not self.gold_looted:
             self.gold_looted=True
             player.gold = player.gold + self.gold
@@ -132,6 +167,9 @@ class Find5GoldRoom(Room):
 
 
 class SnakePitRoom(Room):
+    """
+    A room that damages the player but is not an enemy
+    """
     def intro_text(self):
         return """
         You enter the room when the ground gives way suddenly!
@@ -162,6 +200,10 @@ class GiantSpiderRoom(EnemyRoom):
 
 
 class FindDaggerRoom(LootRoom):
+    """
+    creates a room where the player can pick up
+    a dagger object and add it to their inventory
+    """
     def __init__(self, x, y):
         self.dagger_looted = False
         super().__init__(x, y, items.Dagger())
