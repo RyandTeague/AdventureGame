@@ -18,6 +18,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('AdventureGame_feedback')
 
+
 def feedback(data):
     """
     Takes the player input, asks for an explanation from the player,
@@ -30,6 +31,7 @@ def feedback(data):
     the_date = datetime.now().strftime("%c")
     feedback.append(the_date)
     SHEET.worksheet("feedback").append_row(feedback)
+
 
 def play():
     """

@@ -19,7 +19,6 @@ class Room:
         self.x = x
         self.y = y
 
-    
     def intro_text(self):
         """
         Throws up errors if a room object has been created 
@@ -106,7 +105,8 @@ class EnemyRoom(Room):
         """
         if self.enemy.is_alive():
             player.hp = player.hp - self.enemy.damage
-            print(f"Enemy does {self.enemy.damage} damage. You have {player.hp} HP remaining.")
+            print(f"""Enemy does {self.enemy.damage} damage.
+             You have {player.hp} HP remaining.""")
 
     def available_actions(self):
         """
@@ -161,7 +161,7 @@ class Find5GoldRoom(Room):
         Adds 5 to the gold value from the player object
         """
         if not self.gold_looted:
-            self.gold_looted=True
+            self.gold_looted = True
             player.gold = player.gold + self.gold
             print("+{} gold added.".format(self.gold))
 
@@ -174,13 +174,15 @@ class SnakePitRoom(Room):
         return """
         You enter the room when the ground gives way suddenly!
 
-        You fall into a pit of snakes, you manage to climb out but not without sustaining injuries.
+        You fall into a pit of snakes, you manage to climb out 
+        but not without sustaining injuries.
         """
 
     def modify_player(self, player):
         snake_damage = 2
         player.hp = player.hp - snake_damage
-        print(f"You have taken {snake_damage} damage you have {player.hp} HP remaining...")
+        print(f"""You have taken {snake_damage} damage
+        you have {player.hp} HP remaining...""")
 
 
 class GiantSpiderRoom(EnemyRoom):

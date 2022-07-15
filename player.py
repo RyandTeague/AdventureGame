@@ -1,13 +1,16 @@
 """
 contains the player class
 """
-import items, world
+import items
+import world
 import random
  
+
 class Player():
     """
-    Class representing the player character, contains all the information such as
-    items and health. Also contains all the actions the player can take
+    Class representing the player character, contains all 
+    the information such as items and health. Also contains
+    all the actions the player can take
     """
     def __init__(self):
         self.inventory = [items.Rock()]
@@ -22,7 +25,7 @@ class Player():
         """
         return self.hp > 0
 
-    #Player actions
+    # Player actions
  
     def print_inventory(self):
         """
@@ -32,11 +35,11 @@ class Player():
         for item in self.inventory:
             print(item, '\n')
         print("Gold: {}".format(self.gold))
-        
 
     def move(self, dx, dy):
         """
-        Changes the x y values of player and displays the intro text for that room
+        Changes the x y values of player and displays the
+        intro text for that room
         """
         self.location_x += dx
         self.location_y += dy
@@ -98,7 +101,8 @@ class Player():
         """
         Quits the game
         """
-        print("\n\t\tYou have abandoned your journey!\n \n\t\t\t## GAME OVER ##\n")
+        print("""\n\t\tYou have abandoned your journey!
+        \n \n\t\t\t## GAME OVER ##\n""")
         quit()
 
     # method to call player actions from commands

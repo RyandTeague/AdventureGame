@@ -114,14 +114,8 @@ def play():
 
 ### Validator Testing
 
-- HTML
-    - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/).
-
-- CSS
-    - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/)
-
-- Javascript
-    - Errors and formatting were checked and corrected using [javascript validator](https://jshint.com/)
+- Python
+    - Only errors returned from PEP8onlne.com were "whitespace before "("" and I can't identify what whitespace it's referring to.
 
 ### Compatibility Testing
 
@@ -129,37 +123,19 @@ Site was tested across multiple virtual devices through chrome developor tools.
 
 Site was tested to work on Google chrome, firefox, microsoft edge and internet explorer.
 
-### Performance Testing
-
-I generated a lighthouse report for the website.
-
-![Lighthouse report: Performance-86 accessibility-100 best practices-100 SEO-89](assets/images/lighthouse.PNG)
-
-### Unfixed Bugs
-
-There are currently two bugs known that weren't able to be resolved:
- - One non-critical issue where on touch screen devices the last tile clicked on a turn will remain shaded as if a cursor was hovering over it during the computer and player's turn.
- - When tested on a friend's mobile device they had to restart the browser in order to start a new game, I have tested on my own phone and not had this issue. As the bug could not be repeated I was not able to work out the cause before submission.
-
 ## Deployment
 
-- The site was deployed to GitHub pages. The steps to deploy are as follows
-    - In the Github repository, navigate to the Settings tab
-    - From the source section drop-down menu, select the Master Branch
-    - Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
-
-  
+- The site was deployed using Code Institute's mock terminal for Heorku. The steps to deploy are as follows
+    - Create a new Heroku App
+    - Set the buildbacks to Python and NodeJS in that order
+    - Link the heroku app to the repository
+    - Click on Deploy
 
 ## Credits
 
-- To complete this project I used Code Institute student template: [gitpod full template](https://github.com/Code-Institute-Org/gitpod-full-template)
+- To complete this project I used Code Institute student template: [gitpod full template](https://github.com/Code-Institute-Org/python-essentials-template)
 
 ### Code
 
-Button Design: https://getcssscan.com/css-buttons-examples
-
-The skeleton of this game's code was adapted from this tutorial for a simon game: https://www.youtube.com/watch?v=n_ec3eowFLQ
-
-### Photos
-The Background image was created by using Paint and a screenshot from Indiana Jones and the Last Crusade.
+The basis of this game's code was adapted from this guide book: https://link.springer.com/book/10.1007/978-1-4842-3231-6
 

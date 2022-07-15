@@ -11,9 +11,11 @@ class Item():
         self.value = value
  
     def __str__(self):
-        return "{}\n=====\n{}\nValue: {}\n".format(self.name, self.description, self.value)
+        return "{}\n=====\n{}\nValue: {}\n".format\
+            (self.name, self.description, self.value)
 
 # Subclasses of Item
+
 
 class Weapon(Item):
     """
@@ -25,7 +27,8 @@ class Weapon(Item):
         super().__init__(name, description, value)
  
     def __str__(self):
-        return "{}\n=====\n{}\nValue: {}\nDamage: {}".format(self.name, self.description, self.value, self.damage_desc)
+        return "{}\n=====\n{}\nValue: {}\nDamage: {}".format\
+            (self.name, self.description, self.value, self.damage_desc)
  
 # Subclasses of Weapon
 
@@ -37,7 +40,8 @@ class Rock(Weapon):
     """
     def __init__(self):
         super().__init__(name="Rock",
-                         description="A fist-sized rock, suitable for bludgeoning.",
+                         description="""A fist-sized rock,
+                          suitable for bludgeoning.""",
                          value=0,
                          damage_desc="2",
                          damage=2)
@@ -49,7 +53,8 @@ class Dagger(Weapon):
     """
     def __init__(self):
         super().__init__(name="Dagger",
-                         description="A small dagger with some rust. Somewhat more dangerous than a rock.",
+                         description="""A small dagger with some rust.
+                          Somewhat more dangerous than a rock.""",
                          value=2,
                          damage_desc="4",
                          damage=4)

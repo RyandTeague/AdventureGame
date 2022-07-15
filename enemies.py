@@ -2,9 +2,9 @@
 Contains all the enemy objects that the player
 can lose hp to
 """
-import random
 
 # Superclass
+
 
 class Enemy:
     """
@@ -19,6 +19,7 @@ class Enemy:
         return self.hp > 0
 
 # Subclasses
+
 
 class GiantSpider(Enemy):
     """
