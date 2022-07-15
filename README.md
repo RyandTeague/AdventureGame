@@ -27,7 +27,39 @@ If they find the cave exit they win, if they lose all their HP then they lose.
 
 ### Existing Features
 
-- 
+- Intro screen
+    - When the player starts the game they are given an intro to what they have to do and are shown their available actions.
+
+![Start screen of game](images/startscreen.PNG)
+
+- Combat
+    - In some rooms there are enemies that will take the player's HP and the player will have to either attack and kill the enemy or flee
+        - Currently the only implemented enemy is the giant spider.
+
+![Screenshot of player being attacked by a spider](images/enemy.PNG)
+
+- Finding Loot
+    - the player is able to find different kind of items in the dungeon and add them to their inventory
+        -currently implemented is the ability to find a dagger which does more damage than the default rock
+    - The player is also able to find gold which updates their total gold amount
+
+![Screen where player finds dagger](images/finddagger.PNG)
+![Inventory screen with dagger and 15 gold](images/Inventory.PNG)
+![Screen where player finds gold](images/foundgold.PNG)
+![Inventory screen with 20 gold](images/inventorygold.PNG)
+
+- Winning and losing the game
+    - The player is able to win the game by finding the room that is the exit to the cave
+
+![Screen that says the player has won the game](images/winstate.PNG)
+![Screen that says the player has died and lost the game](images/gameover.PNG)
+
+- Gathering feedback data from Player
+    - When the player enters a command that isn't on the list of available actions they are told that their input is invalid. They are then asked what they were trying to do.
+    The input and the explanation are then dat and timestamped and sent to a google sheet where the developer can see this information. The intent behind this is that there are many different ways of giving a similar command (eg. 'Move North', 'Go North', 'North' etc...) so this way the developer can easily copy in words player are trying to use for available commands into action's keywords. The developer can also use inputs that were trying to do actions that arn't in the game as inspiration to add features that player's want.
+
+![Screenshot that says the player has entered a wrong input and asks what they were trying to do](images/feedback.PNG)
+![Screenshot of google sheet where feedback input is sent](images/feedbacksheet.PNG)
 
 ### Future Features
 
@@ -137,5 +169,5 @@ Site was tested to work on Google chrome, firefox, microsoft edge and internet e
 
 ### Code
 
-The basis of this game's code was adapted from this guide book: https://link.springer.com/book/10.1007/978-1-4842-3231-6
+- The basis of this game's code was adapted from this guide book: https://link.springer.com/book/10.1007/978-1-4842-3231-6
 
