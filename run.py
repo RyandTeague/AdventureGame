@@ -20,11 +20,12 @@ SHEET = GSPREAD_CLIENT.open('AdventureGame_feedback')
 
 def feedback(data):
     """
-    Takes the player input, asks for an explanation from the player, and then appends the date and time 
+    Takes the player input, asks for an explanation from the player,
+    and then appends the date and time 
     before sending it to a google sheet
     """
     feedback = [data]
-    intent = input("\n\t\tSomething went wrong, what were you trying to do?:\n")
+    intent = input("\n\tSomething went wrong, what were you trying to do?:\n")
     feedback.append(intent)
     the_date = datetime.now().strftime("%c")
     feedback.append(the_date)
@@ -52,17 +53,17 @@ def play():
             for action in available_actions:
                 if action_input in action.hotkey:
                     player.do_action(action, **action.kwargs)
-                    print("----------------------------------------------------------------------------")
+                    print("--------------------------------------------------")
                     break
                 elif action_input.lower() == action.name.lower():
                     player.do_action(action, **action.kwargs)
-                    print("----------------------------------------------------------------------------")
+                    print("--------------------------------------------------")
                     break
                 elif action.hotkey == "q" and action_input != action.hotkey:
                     """
-                    If the player inputs an invalid command then this code will ask them
-                    what they were trying to and log it into a spreadsheet that the developer 
-                    can see. 
+                    If the player inputs an invalid command then this code
+                    will ask them what they were trying to and log it into
+                    a spreadsheet that the developer can see. 
                     """
                     feedback(action_input)
                     # worksheet_to_update.append_row(data)
@@ -70,7 +71,6 @@ def play():
                 
         elif not player.is_alive() and not player.victory:
             print("\n\t\tYOU HAVE DIED\n \n\t\t\t## GAME OVER ##\n")
-
 
 
 if __name__ == "__main__":
